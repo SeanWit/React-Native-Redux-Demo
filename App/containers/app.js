@@ -14,6 +14,8 @@ import Button from 'react-native-button';
 import { increment, decrement } from '../actions/actionCreator.js';
 import { store } from '../store/index.js';
 
+import FirstPage from './firstPage.js';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -22,22 +24,18 @@ class App extends Component {
   render() {
     let counter = this.props.counter;
 
+    let defaultName = 'FirstPage';
+    let defaultComponent = FirstPage;
     return(
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          {counter}
-        </Text>
-        <Button
-          style={{fontSize: 30}}
-          onPress={() => this._onIncrement()}>
-          +
-        </Button>
-        <Button
-          style={{fontSize: 30}}
-          onPress={() => this._onDecrement()}>
-          -
-        </Button>
-      </View>
+      <Navigator
+        initialRoute={{ name: defaultName, component: defaultComponent}}
+        configureScene={(route) => {
+          return Navigator.SceneConfigs.VerticalDownSwipeJump;
+        }}
+        renderScene={(route, navigator) => {
+          let Component = route.component;
+          return <Component {...route.params} {...this.props} navigator={navigator} />
+        }} />
     );
   }
 
