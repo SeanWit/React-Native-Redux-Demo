@@ -2,8 +2,9 @@
 
 import { combineReducers } from 'redux';
 
-import { counter } from './reducers.js';
+import { counter, user } from './reducers.js';
 
 export default combineReducers({
   counter: counter,
+  user: user,
 });
