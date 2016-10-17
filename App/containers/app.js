@@ -38,14 +38,6 @@ class App extends Component {
         }} />
     );
   }
-
-  _onIncrement() {
-    store.dispatch(increment());
-  }
-
-  _onDecrement() {
-    store.dispatch(decrement());
-  }
 }
 
 export default connect(
