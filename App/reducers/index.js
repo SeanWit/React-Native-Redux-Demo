@@ -2,9 +2,9 @@
 
 import { combineReducers } from 'redux';
 
-import { counter, user } from './reducers.js';
+import { counter, device } from './reducers.js';
 
 export default combineReducers({
   counter: counter,
-  user: user,
+  device: device,
 });

@@ -13,3 +13,17 @@ export function decrement() {
     type: TYPES.DECREMENT,
   };
 }
+
+export function switchSound(isSoundOn) {
+	return {
+		type: TYPES.SWITCHSOUND,
+    isSoundOn: isSoundOn,
+	}
+}
+
+export function switchVibration(isVibrationOn) {
+	return {
+		type: TYPES.SWITCHVIBRATION,
+    isVibrationOn: isVibrationOn,
+	}
+}

@@ -12,21 +12,43 @@ import { connect } from 'react-redux';
 import Button from 'react-native-button';
 
 import { store } from '../store/index.js';
-import { increment, decrement } from '../actions/actionCreator.js';
+import { increment, decrement, switchSound, switchVibration } from '../actions/actionCreator.js';
 import SecondPage from './secondPage.js';
 
 export default class FirstPage extends Component {
   constructor(props) {
     super(props);
+    this.isSoundOn = true;
+    this.isVibrationOn = true;
+
   }
 
   render() {
     console.log(this.props);
     let counter = this.props.counter;
+    let device = this.props.device;
+    let sound = 'unknow';
+    let vibration = 'unkonw';
+    if(device.isSoundOn) {
+      sound = 'on';
+    } else {
+      sound = 'off';
+    }
+    if(device.isVibrationOn) {
+      vibration = 'on';
+    } else {
+      vibration = 'off';
+    }
     return(
       <View style={styles.container}>
         <Text style={styles.welcome}>
           {counter}
+        </Text>
+        <Text style={styles.welcome}>
+          Sound: {sound}
+        </Text>
+        <Text style={styles.welcome}>
+          Vibration: {vibration}
         </Text>
         <Button
           style={{fontSize: 30}}
@@ -39,7 +61,17 @@ export default class FirstPage extends Component {
           -
         </Button>
         <Button
-          style={{fontSize: 30}}
+          style={{fontSize: 20}}
+          onPress={() => this._onSwitchSound()}>
+          声音
+        </Button>
+        <Button
+          style={{fontSize: 20}}
+          onPress={() => this._onSwitchVibration()}>
+          振动
+        </Button>
+        <Button
+          style={{fontSize: 20}}
           onPress={() => this._onJumpNextPage()}
         >
           Jump
@@ -54,6 +86,26 @@ export default class FirstPage extends Component {
 
   _onDecrement() {
     store.dispatch(decrement());
+  }
+
+  _onSwitchSound() {
+    if(this.isSoundOn) {
+      this.isSoundOn = false;
+      store.dispatch(switchSound(false));
+    } else {
+      this.isSoundOn = true;
+      store.dispatch(switchSound(true));
+   }
+  }
+
+  _onSwitchVibration() {
+    if(this.isVibrationOn) {
+      this.isVibrationOn = false;
+      store.dispatch(switchVibration(false));
+    } else {
+      this.isVibrationOn = true;
+      store.dispatch(switchVibration(true));
+    }
   }
 
   _onJumpNextPage() {

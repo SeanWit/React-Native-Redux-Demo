@@ -23,7 +23,7 @@ export default class SecondPage extends Component {
     return(
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          This is SecondPage!
+          DeviceSetting!
         </Text>
         <Button
           style={{fontSize: 30}}

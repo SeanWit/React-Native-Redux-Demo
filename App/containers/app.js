@@ -11,7 +11,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Button from 'react-native-button';
 
-import { increment, decrement } from '../actions/actionCreator.js';
+import { increment, decrement, switchSound, switchVibration } from '../actions/actionCreator.js';
 import { store } from '../store/index.js';
 
 import FirstPage from './firstPage.js';
@@ -43,10 +43,13 @@ class App extends Component {
 export default connect(
   (state) => ({
     counter: state.counter,
+    device: state.device,
   }),
   (dispatch) => ({
     incrementAction: bindActionCreators(increment, dispatch),
     decrementAction: bindActionCreators(decrement, dispatch),
+    switchSoundAction: bindActionCreators(switchSound, dispatch),
+    switchVibrationAction: bindActionCreators(switchVibration, dispatch),
   })
 )(App);
 
